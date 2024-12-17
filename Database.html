@@ -1,0 +1,53 @@
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCG2B4B-Bp5Ez4qy_dglXGWBCAxo01PcAM",
+        authDomain: "lions-10a9f.firebaseapp.com",
+        projectId: "lions-10a9f",
+        storageBucket: "lions-10a9f.firebasestorage.app",
+        messagingSenderId: "119832127478",
+        appId: "1:119832127478:web:30b8d5a5e55e46b78009d7",
+        measurementId: "G-R6L5DQ17BF"
+    };
+
+    // Firebase Initialize
+    const app = firebase.initializeApp(firebaseConfig);
+</script>
+
+const auth = firebase.auth();
+
+// নতুন ব্যবহারকারী সাইন আপ
+auth.createUserWithEmailAndPassword("user@example.com", "password123")
+    .then((userCredential) => {
+        console.log("User created:", userCredential.user);
+    })
+    .catch((error) => {
+        console.error("Error:", error.message);
+    });
+
+const database = firebase.database();
+
+// ডেটা লিখুন
+database.ref('users/1').set({
+    username: "JohnDoe",
+    email: "john.doe@example.com"
+});
+
+const db = firebase.firestore();
+
+// ডেটা যোগ করুন
+db.collection("users").add({
+    name: "John Doe",
+    email: "john.doe@example.com"
+})
+.then((docRef) => {
+    console.log("Document written with ID:", docRef.id);
+})
+.catch((error) => {
+    console.error("Error adding document:", error);
+});
+
